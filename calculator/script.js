@@ -73,6 +73,10 @@ GRID.addEventListener('click', e => {
     if (e.target.classList.contains('delete')) {
         delete_last_input()
     }
+
+    if (e.target.classList.contains('mc')) {
+        cssStyle_for_up_and_down_Btnpress(e.target);
+    }
 })
 
 window.addEventListener('keydown', (e) => {

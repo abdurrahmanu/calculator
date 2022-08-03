@@ -15,6 +15,7 @@ body{
     flex-direction: column;
     gap: 15px;
     align-items: center;
+    width: 350px;
 }
 
 #screen_text_node {
