@@ -12,8 +12,9 @@ GRID.addEventListener('click', e => {
     if (e.target.classList.contains('paste')) {
         cssStyle_for_up_and_down_Btnpress(e.target)
         if (!calculator_is_off) {
-            if (INPUT_SCREEN.innerText.length < max_length_of_screen_input) put_input_on_screen(e.target);
-            else return;
+            if (INPUT_SCREEN.innerText.length < max_length_of_screen_input) {
+                put_input_on_screen(e.target);
+            } else return;
         }
     }
 
@@ -69,9 +70,13 @@ GRID.addEventListener('click', e => {
         } else return
     }
 
-    if (e.target.classList.contains('delete')) delete_last_input()
-    if (e.target.classList.contains('mc')) cssStyle_for_up_and_down_Btnpress(e.target);
+    if (e.target.classList.contains('delete')) {
+        delete_last_input()
+    }
 
+    if (e.target.classList.contains('mc')) {
+        cssStyle_for_up_and_down_Btnpress(e.target);
+    }
 })
 
 window.addEventListener('keydown', (e) => {
@@ -79,7 +84,9 @@ window.addEventListener('keydown', (e) => {
             if (!calculator_is_off) {
                 if (e.key === button.innerText) {
                     cssStyle_for_up_and_down_Btnpress(button);
-                    if (INPUT_SCREEN.innerText.length < max_length_of_screen_input) put_input_on_screen(button);
+                    if (INPUT_SCREEN.innerText.length < max_length_of_screen_input) {
+                        put_input_on_screen(button);
+                    }
             } else return;
         }
         });
@@ -89,7 +96,9 @@ window.addEventListener('keydown', (e) => {
             try_catch_block_for_answer_evaluation()
     }
     
-    if (e.key === 'Backspace') delete_last_input()
+    if (e.key === 'Backspace') {
+            delete_last_input()
+        }
 });
 
 function put_input_on_screen(selected_input) {
@@ -101,18 +110,26 @@ function put_input_on_screen(selected_input) {
 function put_answer_on_screen(arg) {
     let screen_input;
     let max_length_of_answer = 9;
-    INPUT_SCREEN.innerText && arguments.length === 0) ? args_of_parentFunc_is_0() : args_of_parentFunc_is_greater_than_0();
+
+    if (INPUT_SCREEN.innerText && arguments.length === 0) {
+        args_of_parentFunc_is_0();
+    } else {
+        args_of_parentFunc_is_greater_than_0();
     }
 
     function args_of_parentFunc_is_0() {
         screen_input = INPUT_SCREEN.innerText;
 
         if (Number.isInteger(eval(screen_input))) {
-            if (eval(screen_input).toString().length >= max_length_of_answer) ANSWER_SCREEN.innerText = eval(screen_input).toPrecision(3);
+            if (eval(screen_input).toString().length >= max_length_of_answer) {
+                ANSWER_SCREEN.innerText = eval(screen_input).toPrecision(3);
+            }
             else ANSWER_SCREEN.innerText = eval(screen_input);
         }
         else if (!Number.isInteger(eval(screen_input)) && eval(screen_input) > 0) {
-            if (eval(screen_input).toString().length >= max_length_of_answer) ANSWER_SCREEN.innerText = eval(screen_input).toPrecision(3);
+            if (eval(screen_input).toString().length >= max_length_of_answer) {
+                ANSWER_SCREEN.innerText = eval(screen_input).toPrecision(3);
+            }
             else ANSWER_SCREEN.innerText = eval(screen_input).toFixed(3);
         }
     }
@@ -137,7 +154,9 @@ function while_deleting_if_last_input_is_symbol_dont_evaluate_answer() {
 
 function try_catch_block_for_answer_evaluation() {
     try {
-        if (typeof eval(INPUT_SCREEN.innerText) === 'number') put_answer_on_screen();
+        if (typeof eval(INPUT_SCREEN.innerText) === 'number') {
+            put_answer_on_screen();
+        }
     } catch (error) {
         error = 'syntax error';
         ANSWER_SCREEN.innerText = error;
